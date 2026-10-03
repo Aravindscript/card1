@@ -1,0 +1,833 @@
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+
+body {
+  overflow: hidden;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+/* ==================================================
+   PAGE
+================================================== */
+
+.page {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #d7e8c9;
+}
+
+
+/* ==================================================
+   MAIN SCENE
+================================================== */
+
+.scene {
+  position: relative;
+
+  width: 430px;
+  height: 680px;
+
+  overflow: hidden;
+
+  background: #1d2424;
+}
+
+
+/* ==================================================
+   BACKGROUND
+================================================== */
+
+.background {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 25% 20%,
+      rgba(
+        255,
+        170,
+        70,
+        0.28
+      ),
+      transparent 18%
+    ),
+
+    radial-gradient(
+      circle at 80% 18%,
+      rgba(
+        60,
+        110,
+        180,
+        0.32
+      ),
+      transparent 20%
+    ),
+
+    linear-gradient(
+      180deg,
+      #303936 0%,
+      #202625 55%,
+      #111515 100%
+    );
+}
+
+
+/* ==================================================
+   BLURRED LIGHTS
+================================================== */
+
+.blur-light {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(28px);
+}
+
+
+.blur-light.one {
+  width: 95px;
+  height: 95px;
+
+  top: 90px;
+  left: 35px;
+
+  background:
+    rgba(
+      255,
+      174,
+      60,
+      0.35
+    );
+}
+
+
+.blur-light.two {
+  width: 120px;
+  height: 120px;
+
+  top: 100px;
+  right: 20px;
+
+  background:
+    rgba(
+      80,
+      130,
+      210,
+      0.32
+    );
+}
+
+
+.blur-light.three {
+  width: 70px;
+  height: 70px;
+
+  top: 220px;
+  left: 80px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.12
+    );
+}
+
+
+/* ==================================================
+   DARK LOWER AREA
+================================================== */
+
+.fake-table {
+  position: absolute;
+
+  left: -20px;
+  right: -20px;
+
+  bottom: -30px;
+
+  height: 190px;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(
+        0,
+        0,
+        0,
+        0.7
+      )
+    );
+}
+
+
+/* ==================================================
+   PAPER WINDOW
+================================================== */
+
+/*
+   PRINTER TOP = 52px
+   PRINTER HEIGHT = 60px
+
+   BLACK SLOT TOP = 93px
+
+   The paper window starts EXACTLY
+   at the black slot.
+
+   The receipt therefore becomes
+   visible from the black line.
+*/
+
+.paper-window {
+  position: absolute;
+
+  top: 93px;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 540px;
+
+  overflow: hidden;
+
+  z-index: 20;
+
+  pointer-events: none;
+}
+
+
+/* ==================================================
+   RECEIPT
+================================================== */
+
+.receipt {
+  position: absolute;
+
+  top: 0;
+
+  left: 50%;
+
+  width: 320px;
+
+  height: 480px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  border-radius:
+    0 0 3px 3px;
+
+  box-shadow:
+    0 15px 35px
+    rgba(
+      0,
+      0,
+      0,
+      0.25
+    );
+
+  will-change: transform;
+
+  z-index: 20;
+}
+
+
+/* ==================================================
+   RECEIPT HEADER
+================================================== */
+
+.receipt-header {
+  height: 150px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding-top: 22px;
+
+  text-align: center;
+}
+
+
+/* ==================================================
+   SMALL ICON
+================================================== */
+
+.small-icon {
+  width: 24px;
+  height: 24px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 7px;
+
+  border: 2px solid;
+
+  border-radius: 7px;
+
+  font-size: 11px;
+}
+
+
+/* ==================================================
+   TITLE
+================================================== */
+
+.receipt-header h1 {
+  color: #161616;
+
+  font-size: 20px;
+
+  font-weight: 800;
+
+  margin-bottom: 8px;
+}
+
+
+/* ==================================================
+   SUBTITLE
+================================================== */
+
+.receipt-header p {
+  width: 215px;
+
+  color: #aaaaaa;
+
+  font-size: 10px;
+
+  line-height: 1.45;
+}
+
+
+/* ==================================================
+   CUT LINE
+================================================== */
+
+.cut-line {
+  position: relative;
+
+  height: 1px;
+
+  border-top:
+    1px dashed #dedede;
+}
+
+
+.cut-line span {
+  position: absolute;
+
+  width: 12px;
+  height: 12px;
+
+  top: -6px;
+
+  border-radius: 50%;
+
+  background: #1d2424;
+}
+
+
+.cut-line span:first-child {
+  left: -6px;
+}
+
+
+.cut-line span:last-child {
+  right: -6px;
+}
+
+
+/* ==================================================
+   RECEIPT CONTENT
+================================================== */
+
+.receipt-content {
+  padding:
+    19px 18px;
+}
+
+
+/* ==================================================
+   TWO COLUMN
+================================================== */
+
+.two-column {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 20px;
+}
+
+
+.two-column.second {
+  margin-top: 22px;
+}
+
+
+/* ==================================================
+   LABELS
+================================================== */
+
+.two-column label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #aaaaaa;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.8px;
+}
+
+
+/* ==================================================
+   STRONG TEXT
+================================================== */
+
+.two-column strong {
+  display: block;
+
+  color: #1a1a1a;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+/* ==================================================
+   RIGHT COLUMN
+================================================== */
+
+.right {
+  text-align: right;
+}
+
+
+/* ==================================================
+   STATUS
+================================================== */
+
+.status {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-width: 92px;
+
+  padding:
+    9px 12px;
+
+  border-radius: 20px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+}
+
+
+/* ==================================================
+   USER ROW
+================================================== */
+
+.user-row {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 25px;
+
+  padding-top: 17px;
+
+  border-top:
+    1px solid #eeeeee;
+}
+
+
+/* ==================================================
+   AVATAR
+================================================== */
+
+.avatar {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+
+/* ==================================================
+   USER TEXT
+================================================== */
+
+.user-text {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+
+.user-text strong {
+  color: #242424;
+
+  font-size: 11px;
+}
+
+
+.user-text span {
+  color: #aaaaaa;
+
+  font-size: 9px;
+}
+
+
+/* ==================================================
+   CODE AREA
+================================================== */
+
+.code-area {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-top: 24px;
+}
+
+
+.code-area small {
+  margin-top: 7px;
+
+  color: #aaaaaa;
+
+  font-size: 7px;
+
+  letter-spacing: 1px;
+}
+
+
+/* ==================================================
+   BARCODE
+================================================== */
+
+.barcode {
+  height: 46px;
+
+  display: flex;
+
+  align-items: stretch;
+
+  justify-content: center;
+
+  gap: 3px;
+}
+
+
+.barcode i {
+  display: block;
+
+  width: 3px;
+
+  height: 46px;
+
+  background: #151515;
+}
+
+
+.barcode i.big {
+  width: 6px;
+}
+
+
+.barcode i.small {
+  width: 2px;
+}
+
+
+/* ==================================================
+   QR
+================================================== */
+
+.qr {
+  width: 72px;
+  height: 72px;
+
+  padding: 5px;
+
+  background: #ffffff;
+}
+
+
+.qr-pattern {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(8, 1fr);
+
+  grid-template-rows:
+    repeat(8, 1fr);
+
+  border:
+    2px solid #111111;
+}
+
+
+.qr-pattern span {
+  background: #ffffff;
+}
+
+
+.qr-pattern span:nth-child(2n),
+.qr-pattern span:nth-child(5n),
+.qr-pattern span:nth-child(7n) {
+  background: #111111;
+}
+
+
+/* ==================================================
+   RECEIPT BOTTOM
+================================================== */
+
+.receipt-bottom {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 0;
+
+  height: 10px;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+}
+
+
+.receipt-bottom span {
+  width: 18px;
+  height: 9px;
+
+  background: #ffffff;
+
+  border-radius:
+    50% 50% 0 0;
+}
+
+
+/* ==================================================
+   PRINTER
+================================================== */
+
+/*
+   IMPORTANT:
+
+   The yellow printer body is clipped
+   BEFORE the black slot.
+
+   So the receipt cannot appear from
+   the yellow lower section.
+
+   It can only appear from the
+   black printing line.
+*/
+
+.printer {
+  position: absolute;
+
+  top: 52px;
+
+  left: 50%;
+
+  width: 360px;
+
+  height: 60px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius:
+    12px 12px 0 0;
+
+  z-index: 30;
+
+  /*
+    Yellow body stops exactly
+    before the black slot.
+  */
+
+  clip-path:
+    polygon(
+      0 0,
+      100% 0,
+      100% 49px,
+      0 49px
+    );
+
+  box-shadow:
+    0 10px 25px
+    rgba(
+      0,
+      0,
+      0,
+      0.25
+    );
+}
+
+
+/* ==================================================
+   PRINTER HIGHLIGHT
+================================================== */
+
+.printer-highlight {
+  position: absolute;
+
+  top: 8px;
+
+  left: 18px;
+  right: 18px;
+
+  height: 2px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.35
+    );
+
+  border-radius: 10px;
+}
+
+
+/* ==================================================
+   BLACK PRINTING SLOT
+================================================== */
+
+/*
+   THIS IS THE EXACT START POINT
+   OF THE RECEIPT.
+
+   Printer top = 52px
+   Slot top inside printer = 41px
+
+   52 + 41 = 93px
+
+   Paper window also starts at 93px.
+*/
+
+.printer-slot {
+  position: absolute;
+
+  left: 18px;
+
+  right: 18px;
+
+  top: 41px;
+
+  height: 8px;
+
+  z-index: 50;
+
+  overflow: visible;
+
+  border-radius: 10px;
+}
+
+
+/* ==================================================
+   BLACK SLOT
+================================================== */
+
+.slot-dark {
+  width: 100%;
+
+  height: 100%;
+
+  background: #080808;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 1px 3px
+    rgba(
+      0,
+      0,
+      0,
+      0.8
+    );
+}
